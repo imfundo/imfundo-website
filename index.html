@@ -196,21 +196,22 @@
 
 
         document.addEventListener("DOMContentLoaded", () => {
-            var typespeed = 90;
-            var hiddenClass = "off-canvas";
-            var hiddenClassNeg = "off-canvas-neg";
-            var companyNameEl = document.querySelector(".company-name");
-            var companyMarkEl = document.querySelector(".mark");
-            var mainContent = document.querySelector("main");
-            var footer = document.querySelector("footer");
-            var tagline = document.querySelector("header h2");
-            var letters = companyNameEl.textContent.split("");
+            var typespeed = 90,
+                hiddenClass = "off-canvas",
+                hiddenClassNeg = "off-canvas-neg",
+                companyNameEl = document.querySelector(".company-name"),
+                companyMarkEl = document.querySelector(".mark"),
+                mainContent = document.querySelector("main"),
+                footer = document.querySelector("footer"),
+                tagline = document.querySelector("header h2"),
+                letters = companyNameEl.textContent.split("");
+            
             companyNameEl.textContent = "";
             mainContent.classList.add(hiddenClass);
             footer.classList.add(hiddenClass);
             tagline.classList.add(hiddenClassNeg);
 
-            function onAnimationEnd() {
+            function endAnimation() {
                 companyMarkEl.textContent = "/";
                 mainContent.classList.remove(hiddenClass);
                 footer.classList.remove(hiddenClass);
@@ -219,11 +220,8 @@
 
             function writeLetter() {
                 companyNameEl.textContent += letters.shift();
-                if (letters.length) {
-                    setTimeout(writeLetter, typespeed);
-                } else {
-                    setTimeout(onAnimationEnd, typespeed);
-                }
+                var nextStep = letters.length ? writeLetter : endAnimation;
+                setTimeout(nextStep, typespeed);
             };
 
             writeLetter();
