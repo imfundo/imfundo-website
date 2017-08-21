@@ -62,18 +62,18 @@
         }
 
         main {
-            transition: transform 400ms ease-in 0ms;
+            transition: transform 850ms cubic-bezier(0, 0, .2, 1) 0ms;
         }
 
         footer,
         h2 {
-            transition: transform 600ms ease-in 0ms;
+            transition: transform 450ms cubic-bezier(0, 0, .2, 1) 0ms;
         }
 
         @media (min-width: 520px) {
             body {
                 font-size: 80%;
-                margin: 80px 0 0 0;
+                margin: 60px 0 0 0;
                 flex-direction: row;
             }
             .left-col {
@@ -81,8 +81,8 @@
                 width: 18.75%;
             }
             .right-col {
-                padding: 0 15% 0 0;
-                width: 60%;
+                padding: 0 10% 0 0;
+                width: 65%;
             }
             .off-canvas {
                 transform: translateY(-200vmax);
@@ -155,7 +155,7 @@
 <body>
 
     <header class="left-col">
-        <h1><span class="company-name">imfundo</span> <span class="mark">|</span></h1>
+        <h1><span class="company-name">imfundo</span> <span class="mark">/</span></h1>
         <h2>frontend development</h2>
     </header>
 
@@ -197,6 +197,7 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             var typespeed = 90,
+                initialDelay = 250,
                 hiddenClass = "off-canvas",
                 hiddenClassNeg = "off-canvas-neg",
                 companyNameEl = document.querySelector(".company-name"),
@@ -207,14 +208,15 @@
                 letters = companyNameEl.textContent.split("");
             
             companyNameEl.textContent = "";
+            companyMarkEl.textContent = "|";
             mainContent.classList.add(hiddenClass);
-            footer.classList.add(hiddenClass);
+            footer.classList.add(hiddenClassNeg);
             tagline.classList.add(hiddenClassNeg);
 
             function endAnimation() {
                 companyMarkEl.textContent = "/";
                 mainContent.classList.remove(hiddenClass);
-                footer.classList.remove(hiddenClass);
+                footer.classList.remove(hiddenClassNeg);
                 tagline.classList.remove(hiddenClassNeg);
             }
 
@@ -224,7 +226,7 @@
                 setTimeout(nextStep, typespeed);
             };
 
-            writeLetter();
+            setTimeout(writeLetter, initialDelay);
         })
     </script>
 
