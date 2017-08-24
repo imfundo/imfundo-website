@@ -195,7 +195,7 @@
         ga('send', 'pageview');
 
 
-        document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", function() {
             var typespeed = 90,
                 initialDelay = 250,
                 hiddenClass = "off-canvas",
@@ -227,7 +227,7 @@
             };
 
             setTimeout(writeLetter, initialDelay);
-        })
+        });
     </script>
 
 
